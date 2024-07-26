@@ -674,7 +674,7 @@ class Language:
         )
         return 100 - min(self.distance(supported), 100)
 
-    def distance(self, supported: 'Language') -> int:
+    def distance(self, supported: 'Language', ignore_script: bool = False) -> int:
         """
         Suppose that `self` is the language that the user desires, and
         `supported` is a language that is actually supported.
@@ -703,25 +703,39 @@ class Language:
             desired_triple = ('und', 'Zzzz', 'ZZ')
         else:
             desired_complete = self.prefer_macrolanguage().maximize()
-            desired_triple = (
-                desired_complete.language,
-                desired_complete.script,
-                desired_complete.territory,
-            )
-
+            if ignore_script:
+                desired_triple = (
+                    desired_complete.language,
+                    None,
+                    desired_complete.territory,
+                )
+            else:
+                desired_triple = (
+                    desired_complete.language,
+                    desired_complete.script,
+                    desired_complete.territory,
+                )
+            
         if (
             supported.language is None
             and supported.script is None
             and supported.territory is None
         ):
-            supported_triple = ('und', 'Zzzz', 'ZZ')
+            supported_triple = ('und', 'Zzzz', 'ZZ')    
         else:
             supported_complete = supported.prefer_macrolanguage().maximize()
-            supported_triple = (
-                supported_complete.language,
-                supported_complete.script,
-                supported_complete.territory,
-            )
+            if ignore_script:
+               supported_triple = (
+                    supported_complete.language,
+                    None,
+                    supported_complete.territory,
+                )
+            else:
+                supported_triple = (
+                    supported_complete.language,
+                    supported_complete.script,
+                    supported_complete.territory,
+                )
 
         return tuple_distance_cached(desired_triple, supported_triple)
 
@@ -1648,7 +1662,7 @@ def tag_match_score(
     return desired_ld.match_score(supported_ld)
 
 
-def tag_distance(desired: Union[str, Language], supported: Union[str, Language]) -> int:
+def tag_distance(desired: Union[str, Language], supported: Union[str, Language], ignore_script: bool = False) -> int:
     """
     Tags that expand to the same thing when likely values are filled in get a
     distance of 0.
@@ -1798,7 +1812,7 @@ def tag_distance(desired: Union[str, Language], supported: Union[str, Language])
     """
     desired_obj = Language.get(desired)
     supported_obj = Language.get(supported)
-    return desired_obj.distance(supported_obj)
+    return desired_obj.distance(supported_obj, ignore_script)
 
 
 def best_match(
@@ -1835,6 +1849,7 @@ def closest_match(
     desired_language: Union[str, Language],
     supported_languages: Sequence[str],
     max_distance: int = 25,
+    ignore_script: bool = False,
 ) -> Tuple[str, int]:
     """
     You have software that supports any of the `supported_languages`. You want
@@ -1884,7 +1899,7 @@ def closest_match(
         return desired_language, 0
 
     match_distances = [
-        (supported, tag_distance(desired_language, supported))
+        (supported, tag_distance(desired_language, supported, ignore_script))
         for supported in supported_languages
     ]
     match_distances = [
