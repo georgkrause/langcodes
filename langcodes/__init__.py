@@ -681,7 +681,9 @@ class Language:
 
         This method returns a number from 0 to 134 measuring the 'distance'
         between the languages (lower numbers are better). This is not a
-        symmetric relation.
+        symmetric relation. If `ignore_script` is `True`, the script will
+        not be used in the comparison, possibly resulting in a smaller
+        'distance'.
 
         The language distance is not really about the linguistic similarity or
         history of the languages; instead, it's based largely on sociopolitical
@@ -1805,6 +1807,12 @@ def tag_distance(desired: Union[str, Language], supported: Union[str, Language],
 
     >>> tag_distance('ja', 'ja-Latn-US-hepburn')
     54
+    
+    If `ignore_script` is used, the script difference is ignored and a smaller
+    differenge with lower score will be found.
+
+    >>> tag_distance('ja', 'ja-Latn-hepburn', ignore_script=True)
+    0
 
     >>> # You can read the Shavian script, right?
     >>> tag_distance('en', 'en-Shaw')
@@ -1868,6 +1876,9 @@ def closest_match(
     value is 25, and raising it can cause data to be processed in significantly
     the wrong language. The documentation for `tag_distance` describes the
     distance values in more detail.
+    
+    `ignore_script` makes the matching ignore scripts, allowing matches to be 
+    found when they wouldn't otherwise be due to different scripts.
 
     When there is a tie for the best matching language, the first one in the
     tie will be used.
@@ -1886,6 +1897,9 @@ def closest_match(
 
     >>> closest_match('ja', ['ja-Latn-hepburn', 'en'])
     ('und', 1000)
+    
+    >>> closest_match('ja', ['ja-Latn-hepburn', 'en'], ignore_script=True)
+    ('ja-Latn-hepburn', 0)
     """
     desired_language = str(desired_language)
 
