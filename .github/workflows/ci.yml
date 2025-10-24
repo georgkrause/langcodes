@@ -20,7 +20,7 @@ jobs:
       - name: Run tests
         run: pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov=language_data --cov-report=xml:junit/coverage-${{ matrix.python-version }}.xml
       - name: Upload 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: junit-${{ matrix.python-version }}
           path: junit/*
