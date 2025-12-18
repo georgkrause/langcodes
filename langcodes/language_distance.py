@@ -1,9 +1,8 @@
-from .data_dicts import LANGUAGE_DISTANCES
-from typing import Dict, Tuple
+from langcodes.data_dicts import LANGUAGE_DISTANCES
 
 
-TagTriple = Tuple[str, str, str]
-_DISTANCE_CACHE: Dict[Tuple[TagTriple, TagTriple], int] = {}
+TagTriple = tuple[str, str, str]
+_DISTANCE_CACHE: dict[tuple[TagTriple, TagTriple], int] = {}
 DEFAULT_LANGUAGE_DISTANCE = LANGUAGE_DISTANCES["*"]["*"]
 DEFAULT_SCRIPT_DISTANCE = LANGUAGE_DISTANCES["*_*"]["*_*"]
 DEFAULT_TERRITORY_DISTANCE = 4

@@ -15,6 +15,9 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
 ]
 dynamic = ["version"]
+dependencies = [
+  "typing_extensions; python_version < '3.11'"
+]
 
 requires-python = ">= 3.9"
 
