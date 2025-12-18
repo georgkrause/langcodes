@@ -492,16 +492,16 @@ be limited to a particular territory with a territory code (such as a country
 code).
 
     >>> Language.get('es').speaking_population()
-    493528077
+    507161086
 
     >>> Language.get('pt').speaking_population()
-    237496885
+    249463920
 
     >>> Language.get('es-BR').speaking_population()
-    76218
+    79219
 
     >>> Language.get('pt-BR').speaking_population()
-    192661560
+    200247320
 
     >>> Language.get('vo').speaking_population()
     0
@@ -516,11 +516,11 @@ Script codes will be ignored, because the script is not involved in speaking:
         
     >>> all = Language.get('zh').writing_population()
     >>> all
-    1240841517
+    1260669749
 
     >>> traditional = Language.get('zh-Hant').writing_population()
     >>> traditional
-    36863340
+    37305235
 
     >>> simplified = Language.get('zh-Hans').writing_population()
     >>> all == traditional + simplified
@@ -538,9 +538,9 @@ write in a _different_ language.
 Like `.speaking_population()`, this can be limited to a particular territory:
 
     >>> Language.get('zh-Hant-HK').writing_population()
-    6439733
+    6482289
     >>> Language.get('zh-Hans-HK').writing_population()
-    338933
+    341173
 
 
 ## Comparing and matching languages
