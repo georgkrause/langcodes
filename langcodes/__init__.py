@@ -1000,6 +1000,15 @@ class Language:
         if reduced.territory is not None:
             extra_parts.append(reduced.territory_name(language, max_distance))
 
+        if reduced.extlangs is not None:
+            extra_parts.extend(reduced.extlangs)
+        if reduced.variants is not None:
+            extra_parts.extend(reduced.variants)
+        if reduced.extensions is not None:
+            extra_parts.extend(reduced.extensions)
+        if reduced.private is not None:
+            extra_parts.append(reduced.private)
+
         if extra_parts:
             clarification = language._display_separator().join(extra_parts)
             pattern = language._display_pattern()
