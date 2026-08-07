@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args: [-L, "statics,vai"]
+        exclude: ^(langcodes/data/|langcodes/data_dicts\.py|langcodes/language_lists\.py)
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.23.6
+    hooks:
+      - id: typos
+        exclude: ^(langcodes/data/|langcodes/data_dicts\.py|langcodes/language_lists\.py)

@@ -1,0 +1,6 @@
+# _typos.toml
+# Configuration for typos spell checker
+
+[default.extend-words]
+fre = "fre"
+vai = "vai"
