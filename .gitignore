@@ -14,3 +14,4 @@ docs/_build/
 .hypothesis
 poetry.lock
 .venv
+test_env/

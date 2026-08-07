@@ -1,0 +1,3 @@
+[submodule "language_data/data/cldr-json"]
+	path = language_data/data/cldr-json
+	url = git@github.com:unicode-org/cldr-json.git

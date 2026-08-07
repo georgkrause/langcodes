@@ -1218,13 +1218,13 @@ class Language:
         how many people speak in a particular writing script.
 
         >>> Language.get('es').speaking_population()
-        493528077
+        507161086
         >>> Language.get('pt').speaking_population()
-        237496885
+        249463920
         >>> Language.get('es-BR').speaking_population()
-        76218
+        79219
         >>> Language.get('pt-BR').speaking_population()
-        192661560
+        200247320
         >>> Language.get('vo').speaking_population()
         0
         """
@@ -1253,27 +1253,27 @@ class Language:
 
         >>> all = Language.get('zh').writing_population()
         >>> all
-        1240841517
+        1260669749
 
         >>> traditional = Language.get('zh-Hant').writing_population()
         >>> traditional
-        36863340
+        37305235
 
         >>> simplified = Language.get('zh-Hans').writing_population()
         >>> all == traditional + simplified
         True
 
         >>> Language.get('zh-Hant-HK').writing_population()
-        6439733
+        6482289
         >>> Language.get('zh-Hans-HK').writing_population()
-        338933
+        341173
 
         Note that if you want to get the total Chinese writing population
         of Hong Kong, you need to avoid normalization that would interpret
         'zh-HK' as 'zh-Hant-HK'.
 
         >>> Language.get('zh-HK', normalize=False).writing_population()
-        6778666
+        6823462
 
         Unknown or unspecified language codes get a population of 0.
 

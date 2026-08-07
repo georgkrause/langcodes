@@ -1,0 +1,12 @@
+.coverage
+*.egg-info
+*~
+*.swp
+__pycache__
+build
+dist
+cldr-localenames-*
+cldr
+.hypothesis
+.venv/
+junit/
