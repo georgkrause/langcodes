@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install
-        run: pip install .[test,data]
+        run: |
+          pip install ./language_data
+          pip install .[test,data]
       - name: Run tests
         run: pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov=language_data --cov-report=xml:junit/coverage-${{ matrix.python-version }}.xml
       - name: Upload 

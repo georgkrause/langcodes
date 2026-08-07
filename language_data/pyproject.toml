@@ -39,3 +39,7 @@ requires = ["setuptools>=60", "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
+root = ".."
+
+[tool.setuptools_scm.tag]
+prefix = "language_data-v"
